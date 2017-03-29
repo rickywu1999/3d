@@ -31,9 +31,9 @@ def generate_sphere( points, cx, cy, cz, r, step):
         for b in range(int(1/step) + 1):
             b = b*step*math.pi
             add_point(points,
-                      r*math.cos(b) + cx,
-                      r*math.sin(b)*math.cos(a) + cy,
-                      r*math.sin(b)*math.sin(a) + cz)
+                      r*cos(b) + cx,
+                      r*sin(b)*cos(a) + cy,
+                      r*sin(b)*sin(a) + cz)
 
 def add_torus( points, cx, cy, cz, r0, r1, step ):
     m = []
@@ -47,9 +47,9 @@ def generate_torus( points, cx, cy, cz, r0, r1, step ):
         for b in range(int(1/step) + 1):
             b = b*step*2*math.pi
             add_point(points,
-                        (r0*math.cos(b)+r1)*(math.cos(b)) + cx,
-                        r0*math.sin(a) + cy,
-                        -1*(r0*math.cos(a)+r1)*math.sin(b) + cz)
+                        (r0*cos(a)+r1)*(cos(b)) + cx,
+                        r0*sin(a) + cy,
+                        -1*(r0*cos(a)+r1)*sin(b) + cz)
 
 def add_circle( points, cx, cy, cz, r, step ):
     x0 = r + cx
@@ -57,8 +57,8 @@ def add_circle( points, cx, cy, cz, r, step ):
     t = step
 
     while t <= 1.00001:
-        x1 = r * math.cos(2*math.pi * t) + cx;
-        y1 = r * math.sin(2*math.pi * t) + cy;
+        x1 = r * cos(2*math.pi * t) + cx;
+        y1 = r * sin(2*math.pi * t) + cy;
 
         add_edge(points, x0, y0, cz, x1, y1, cz)
         x0 = x1
